@@ -3,7 +3,7 @@ AbuHammam's website for The ReminderHood, the Islamic education brand that teach
 digestible bits ("Deen in Bits"). Pages: Home → Apps hub (`/apps`) with one page per app (`/apps/cave-ashari`,
 `/apps/ajrhunter`) → Learn (Deen in Bits library) → About (story + IMAMAE core values). Tagline: **Small bits. Lasting impact.** Motto: **Learn · Reflect · Apply**.
 
-- Live: Vercel (auto-deploys every push to `main` once the repo is imported in Vercel)
+- Live: https://thereminderhood.com (also www.; Vercel project `the-reminderhood/thereminderhoodwebsite`, auto-deploys every push to `main`)
 - Repo: thereminderhood-code/TheReminderhoodWebsite (public)
 - Name is always written **The ReminderHood** (capital H). In the hero wordmark "Hood" is ember. Slug: `reminderhood`.
 - Design source: the owner's Canva mock-up "The Reminderhood Website Mock Up" (hero, Apps page, colour palette, logo).
@@ -19,11 +19,11 @@ digestible bits ("Deen in Bits"). Pages: Home → Apps hub (`/apps`) with one pa
 - Icons: one SVG sprite, `assets/icons.svg`, used as `<svg><use href="/assets/icons.svg#i-name"/></svg>`
 - Paths are **root-absolute everywhere** (`/css/…`, `/assets/…`, `/learn`, `/apps/ajrhunter`) because pages live at different folder depths
 - Hosting: Vercel (`vercel.json`: `cleanUrls`, so `apps/cave-ashari/index.html` is served at `/apps/cave-ashari`; cache headers for assets and fonts)
-- SEO: every `<head>` has title, description, canonical, Open Graph + Twitter card (images in `assets/og/`, 1200×630); inner pages carry BreadcrumbList JSON-LD. `sitemap.xml` + `robots.txt` at the root. The domain is the placeholder `https://[SITE_URL]` until the live domain is known: replace it in every `.html`, `sitemap.xml` and `robots.txt`
+- SEO: every `<head>` has title, description, canonical, Open Graph + Twitter card (images in `assets/og/`, 1200×630); inner pages carry BreadcrumbList JSON-LD. `sitemap.xml` + `robots.txt` at the root. Absolute URLs use `https://thereminderhood.com`
 
 ## Commands
 - `npx serve .` - serve locally (supports clean URLs; `python3 -m http.server` does NOT, so `/learn` would 404)
-- Deploy: `git push origin main` → Vercel deploys in ~1 minute (no build or deploy script)
+- Deploy: `git push origin main` → Vercel deploys in ~1 minute (no build or deploy script). The Vercel project already exists: never import the repo again (it would create a duplicate project)
 - Screenshot check: Playwright (`playwright-core`) in a scratch folder against the local server at 1440×900 and 390×844.
   In the cloud sandbox Google Fonts are blocked: route `fonts.googleapis.com` to local `@fontsource/poppins` + `@fontsource/cinzel`
 
@@ -44,7 +44,7 @@ digestible bits ("Deen in Bits"). Pages: Home → Apps hub (`/apps`) with one pa
 | `index.html` | Home: hero (eyebrow, wordmark, tagline, CTAs, 4 pillars, mosque art), ayah behind the name (Adh-Dhariyat 51:55), 4 learning tracks (link to `learn#<track>`), "A bit for today", app preview, CTA |
 | `apps/index.html` | Apps hub: breadcrumb, intro "Tools built to serve the Qur'an", one card per app (Explore → app page, Launch app → live URL in a new tab), "More useful tools" banner, "How we build" |
 | `apps/cave-ashari/index.html`, `apps/ajrhunter/index.html` | App pages (`<body data-app="…">`), sections in order: hero (breadcrumb, mark, name, promise, Launch app + How it works, `[HERO_ASSET]` slot), the problem, how it works (4 steps, `#how`), who it's for, demo (`data-media` players with placeholder files), FAQ (`<details>`), closing CTA |
-| `sitemap.xml`, `robots.txt` | All six URLs; uses `https://[SITE_URL]` |
+| `sitemap.xml`, `robots.txt` | All six URLs on `https://thereminderhood.com`; add new pages to the sitemap |
 | `assets/og/` | Share images: `og-default`, `og-apps`, `og-cave-ashari`, `og-ajrhunter` (.jpg) |
 | `assets/apps/<app>/` | (not created yet) hero image/video and demo media; see README "Placeholders" |
 | `learn.html` | Deen in Bits: Learn/Reflect/Apply method, Simple → Intermediate → Advanced levels, filterable bit library (`#bitLibrary`) |

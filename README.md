@@ -24,7 +24,6 @@ Then open http://localhost:3000.
 ## Placeholders to fill
 | Placeholder | Where | What to do |
 |---|---|---|
-| `https://[SITE_URL]` | every `.html` `<head>`, `sitemap.xml`, `robots.txt` | Replace with the live domain, e.g. `grep -rl '\[SITE_URL\]' . \| xargs sed -i 's#https://\[SITE_URL\]#https://your-domain#g'` |
 | `[HERO_ASSET]` | `apps/cave-ashari/index.html`, `apps/ajrhunter/index.html` (HTML comment above `.app-hero-media`) | Put `hero.jpg` or `hero.mp4` in `assets/apps/<app>/` and swap the two decorative children for the `<img class="cover">` / `<video class="cover">` shown in the comment |
 | Cave Ash'ari before/after | `assets/apps/cave-ashari/before.mp3`, `after.mp3` | Add the files; the players show "Sample coming soon" until they exist |
 | AjrHunter sample | `assets/apps/ajrhunter/sample.mp4`, `sample-poster.jpg` | Add the files |

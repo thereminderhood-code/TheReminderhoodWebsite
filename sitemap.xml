@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace https://[SITE_URL] with the live domain (also in every page's <head>). -->
+<!-- Replace https://thereminderhood.com with the live domain (also in every page's <head>). -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://[SITE_URL]/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://[SITE_URL]/learn</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://[SITE_URL]/apps</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://[SITE_URL]/apps/cave-ashari</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://[SITE_URL]/apps/ajrhunter</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://[SITE_URL]/about</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://thereminderhood.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://thereminderhood.com/learn</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://thereminderhood.com/apps</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://thereminderhood.com/apps/cave-ashari</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://thereminderhood.com/apps/ajrhunter</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://thereminderhood.com/about</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
