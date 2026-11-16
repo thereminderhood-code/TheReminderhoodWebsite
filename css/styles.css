@@ -797,6 +797,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .media-note { display: none; font-size: .85rem; color: var(--sand); }
 .is-missing .media-note { display: block; }
 
+/* Learn page: the single Deen in Bits animation */
+.learn-gif { margin: 0; padding: 12px; overflow: hidden; }
+.learn-gif img { width: 100%; height: auto; border-radius: var(--radius-sm); }
+.learn-gif.is-missing { display: grid; place-items: center; min-height: 260px; }
+.learn-gif.is-missing img { display: none; }
+
 /* FAQ (native <details>, works without JS) */
 .faq { display: grid; gap: 12px; max-width: 840px; }
 .faq details { padding: 18px 22px; }

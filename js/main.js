@@ -139,9 +139,14 @@
   // the player can't load, so show the note instead of a silent, broken player.
   function initMediaFallback() {
     $$("[data-media]").forEach((box) => {
-      const media = $("audio, video", box);
+      const media = $("audio, video, img", box);
       if (!media) return;
       const missing = () => box.classList.add("is-missing");
+      if (media.tagName === "IMG") {
+        if (media.complete && !media.naturalWidth) missing();
+        media.addEventListener("error", missing);
+        return;
+      }
       // the error may already have fired before this script ran (scripts are deferred)
       if (media.networkState === HTMLMediaElement.NETWORK_NO_SOURCE || media.error) missing();
       media.addEventListener("error", missing);

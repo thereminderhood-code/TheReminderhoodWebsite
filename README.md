@@ -26,4 +26,5 @@ Then open http://localhost:3000.
 |---|---|---|
 | `[HERO_ASSET]` | `apps/cave-ashari/index.html`, `apps/ajrhunter/index.html` (HTML comment above `.app-hero-media`) | Put `hero.jpg` or `hero.mp4` in `assets/apps/<app>/` and swap the two decorative children for the `<img class="cover">` / `<video class="cover">` shown in the comment |
 | Cave Ash'ari before/after | `assets/apps/cave-ashari/before.mp3`, `after.mp3` | Add the files; the players show "Sample coming soon" until they exist |
+| `[LEARN_GIF]` | `assets/learn/deen-in-bits.gif` | Add the Deen in Bits animation; the Learn page shows "Animation coming soon" until it exists |
 | AjrHunter sample | `assets/apps/ajrhunter/sample.mp4`, `sample-poster.jpg` | Add the files |
