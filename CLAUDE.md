@@ -1,7 +1,7 @@
 # The ReminderHood - Brand Website
 AbuHammam's website for The ReminderHood, the Islamic education brand that teaches Muslims their deen in small,
-digestible bits ("Deen in Bits"). Four pages: Home → Apps (Cave Ash'ari, AjrHunter, coming soon) → Learn (Deen in Bits
-library) → About (story + IMAMAE core values). Tagline: **Small bits. Lasting impact.** Motto: **Learn · Reflect · Apply**.
+digestible bits ("Deen in Bits"). Pages: Home → Apps hub (`/apps`) with one page per app (`/apps/cave-ashari`,
+`/apps/ajrhunter`) → Learn (Deen in Bits library) → About (story + IMAMAE core values). Tagline: **Small bits. Lasting impact.** Motto: **Learn · Reflect · Apply**.
 
 - Live: Vercel (auto-deploys every push to `main` once the repo is imported in Vercel)
 - Repo: thereminderhood-code/TheReminderhoodWebsite (public)
@@ -16,8 +16,10 @@ library) → About (story + IMAMAE core values). Tagline: **Small bits. Lasting 
 - Language: plain JavaScript (ES2020+, one IIFE in `main.js`), HTML, CSS (design tokens in `:root` of `styles.css`)
 - Fonts: Google Fonts Poppins (UI/headings) + Cinzel (the "THE REMINDERHOOD" wordmark); `assets/fonts/hafs.woff2`
   (KFGQPC Uthmanic Script Hafs, converted from AjrHunter's `hafs.otf`) for Qur'an text
-- Icons: one SVG sprite, `assets/icons.svg`, used as `<svg><use href="assets/icons.svg#i-name"/></svg>`
-- Hosting: Vercel (`vercel.json`: `cleanUrls`, so links are `apps`, `learn`, `about`; cache headers for assets and fonts)
+- Icons: one SVG sprite, `assets/icons.svg`, used as `<svg><use href="/assets/icons.svg#i-name"/></svg>`
+- Paths are **root-absolute everywhere** (`/css/…`, `/assets/…`, `/learn`, `/apps/ajrhunter`) because pages live at different folder depths
+- Hosting: Vercel (`vercel.json`: `cleanUrls`, so `apps/cave-ashari/index.html` is served at `/apps/cave-ashari`; cache headers for assets and fonts)
+- SEO: every `<head>` has title, description, canonical, Open Graph + Twitter card (images in `assets/og/`, 1200×630); inner pages carry BreadcrumbList JSON-LD. `sitemap.xml` + `robots.txt` at the root. The domain is the placeholder `https://[SITE_URL]` until the live domain is known: replace it in every `.html`, `sitemap.xml` and `robots.txt`
 
 ## Commands
 - `npx serve .` - serve locally (supports clean URLs; `python3 -m http.server` does NOT, so `/learn` would 404)
@@ -40,12 +42,16 @@ library) → About (story + IMAMAE core values). Tagline: **Small bits. Lasting 
 | File | Role |
 |---|---|
 | `index.html` | Home: hero (eyebrow, wordmark, tagline, CTAs, 4 pillars, mosque art), ayah behind the name (Adh-Dhariyat 51:55), 4 learning tracks (link to `learn#<track>`), "A bit for today", app preview, CTA |
-| `apps.html` | Our Apps: phone + floating tiles visual, 4 cards (Cave Ash'ari, AjrHunter, 2× Coming soon), "More useful tools" banner, "How we build" |
+| `apps/index.html` | Apps hub: breadcrumb, intro "Tools built to serve the Qur'an", one card per app (Explore → app page, Launch app → live URL in a new tab), "More useful tools" banner, "How we build" |
+| `apps/cave-ashari/index.html`, `apps/ajrhunter/index.html` | App pages (`<body data-app="…">`), sections in order: hero (breadcrumb, mark, name, promise, Launch app + How it works, `[HERO_ASSET]` slot), the problem, how it works (4 steps, `#how`), who it's for, demo (`data-media` players with placeholder files), FAQ (`<details>`), closing CTA |
+| `sitemap.xml`, `robots.txt` | All six URLs; uses `https://[SITE_URL]` |
+| `assets/og/` | Share images: `og-default`, `og-apps`, `og-cave-ashari`, `og-ajrhunter` (.jpg) |
+| `assets/apps/<app>/` | (not created yet) hero image/video and demo media; see README "Placeholders" |
 | `learn.html` | Deen in Bits: Learn/Reflect/Apply method, Simple → Intermediate → Advanced levels, filterable bit library (`#bitLibrary`) |
 | `about.html` | Story, "What we make", IMAMAE core values (text exactly as in the owner's values graphic), CTA |
 | `css/styles.css` | Every style: tokens, base, layout, header, buttons, hero, cards, page-specific, footer, tab bar, motion, responsive |
 | `js/bits.js` | Deen in Bits content (data only) |
-| `js/main.js` | Header scroll/menu, social links (`SOCIAL` at the top), scroll reveal, bit of the day (same bit for everyone each day + arrows), library render + filters (deep links `learn#faith`), footer year |
+| `js/main.js` | Header scroll/menu, social links (`SOCIAL` at the top), scroll reveal, bit of the day (same bit for everyone each day + arrows), library render + filters (deep links `learn#faith`), demo-media fallback (`[data-media]` gets `.is-missing` → "Sample coming soon" when a file can't load), footer year |
 | `assets/logo.png` | The TR mark, cut from the mock-up (202×190; ask the owner for a vector/high-res export for print) |
 | `assets/hero-mosque.svg` | Hand-drawn mosque-at-dusk scene for the hero (original artwork, no stock) |
 | `assets/icons.svg` | Icon sprite (`i-home`, `i-grid`, `i-book`, `i-info`, `i-arrow`, …) |
@@ -54,8 +60,17 @@ library) → About (story + IMAMAE core values). Tagline: **Small bits. Lasting 
 | `assets/favicon-32.png`, `apple-touch-icon.png`, `icon-512.png` | Icons (made from the logo) |
 | `vercel.json` | cleanUrls + headers |
 
-Header, footer and phone tab bar are repeated in each `.html` file (no build step). When you change one, change all four,
-and set `aria-current="page"` on the current page's link in both the header and the tab bar.
+Header, footer and phone tab bar are repeated in each `.html` file (no build step). When you change one, change all six,
+and set `aria-current="page"` on the current page's link in both the header and the tab bar. On an app page the
+top-level Apps link and tab get `aria-current="true"` (section) and the app's dropdown link gets `aria-current="page"`.
+The header "Apps" item has a CSS-only dropdown (`.has-sub` → `.sub`, opens on hover/focus); in the phone menu it shows as indented sub-links.
+
+## App accents
+Each app's colours are three variables set by `data-app` on `<body>` (app pages) or on a hub card:
+`--app-accent`, `--app-deep`, `--app-ink`. Cave Ash'ari = `#FF6D29` / `#453027` / `#161316`; AjrHunter = gold `#D4A64A` / `#4a3712` / `#14110b`.
+Only the hero (`.app-hero` glow, mark, `.calli` watermark, `h1 .tick`) and `.btn--app` read them; everything else keeps the main site's look.
+App-page copy must describe the apps as they really are: Cave Ash'ari's spaces are Subtle, Majestic, Cathedral, Hammam (+ Dry);
+AjrHunter syncs the surah + ayat the user chooses (it does not detect which verses were recited).
 
 ## Important Rules
 - Every Qur'an verse shows its surah name + ayah number; every hadith shows its collection + number (the owner's rule)
@@ -65,7 +80,7 @@ and set `aria-current="page"` on the current page's link in both the header and 
 - Social links are empty until the owner gives the handles: fill `SOCIAL` in `main.js`; empty ones hide themselves
 - Never put the owner's email or any secret in the code
 - Don't mix Cave Ash'ari or AjrHunter code into this repo; link to the live apps
-- Check every page at 1440 px and 390 px before pushing (no horizontal scroll, nothing overlapping the hero text)
+- Check every page at 1440 px, 390 px and 360 px before pushing (no horizontal scroll, nothing overlapping the hero text)
 - After a bug or detour that took real time to solve, add a short entry to **Lessons learned** below
 
 ## Git Workflow
@@ -77,3 +92,5 @@ and set `aria-current="page"` on the current page's link in both the header and 
 - **A JS string broke on quotes:** `"ease is "with" the hardship"` killed all of `bits.js` (`Unexpected token 'with'`). Use ‘curly’ quotes inside content strings and run `node --check js/*.js`.
 - **Hero text overflowed on phones:** a CSS grid column grows to its widest child's min-content (the huge `h1`). Fix: `grid-template-columns: minmax(0, 1fr)` on `.hero-copy` + a phone-sized `h1` clamp.
 - **The hero art hid the wordmark:** at 62vw the crescent sat on "Hood". Keep the art ≤50vw on desktop and faded (opacity .3) under the text on phones.
+- **Phone menu never opened:** the menu button swaps its own icon on click, so the clicked `<svg>` was detached before the document "click outside" handler ran, `header.contains(e.target)` was false, and the menu closed instantly. Use `e.composedPath().includes(header)`.
+- **Subfolder pages lost their CSS/icons:** relative paths (`css/styles.css`) resolve against `/apps/cave-ashari/`. All paths are root-absolute now; keep them that way.

@@ -5,6 +5,8 @@
    5 Buttons/chips · 6 Hero · 7 Sections & cards
    8 Page-specific (apps, learn, about) · 9 Footer
    10 Mobile tab bar · 11 Motion · 12 Responsive
+   13 Apps hub & app pages (nav dropdown, breadcrumb, app accent,
+      hero media slot, demo players, FAQ)
    ========================================================= */
 
 /* ---------- 1. Tokens (from the brand palette in the mock-up) ---------- */
@@ -155,8 +157,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
   transition: background .2s, color .2s;
 }
 .nav-links a:hover { background: var(--glass-2); color: #fff; }
-.nav-links a[aria-current="page"] { background: var(--white); color: #111; font-weight: 600; }
-.nav-links a[aria-current="page"] svg { color: var(--orange); }
+.nav-links > li > a[aria-current] { background: var(--white); color: #111; font-weight: 600; }
+.nav-links > li > a[aria-current] svg { color: var(--orange); }
 .nav-links svg, .tabbar svg, .ico { width: 18px; height: 18px; flex: none; }
 
 .nav-cta { display: inline-flex; }
@@ -429,7 +431,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .app-icon img { width: 42px; height: 42px; }
 .app-icon--ajr { background: #161316; }
 .app-icon--ajr img { width: 76px; height: 76px; border-radius: 20px; }
-.app-card h3 { font-size: 1.45rem; }
+.app-card h3, .app-card .h3 { font-size: 1.45rem; }
 .app-card .motto { font-weight: 600; font-size: .92rem; color: #E6E6E6; }
 .app-card .desc { font-size: .92rem; color: var(--muted); }
 .app-card .foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 16px; }
@@ -659,6 +661,151 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .reveal { opacity: 1; transform: none; }
 }
 
+/* ---------- 13. Apps hub & app pages ---------- */
+/* Each app's accent lives in three variables, set by data-app on <body> (app pages)
+   or on a card (hub). Only the hero and the buttons read them; the rest of the page
+   keeps the main site's look. */
+[data-app] { --app-accent: var(--orange); --app-deep: #3a1606; --app-ink: #0b0806; }
+[data-app="cave-ashari"] { --app-accent: #FF6D29; --app-deep: #453027; --app-ink: #161316; }
+[data-app="ajrhunter"] { --app-accent: #D4A64A; --app-deep: #4a3712; --app-ink: #14110b; }
+
+.btn--app { background: var(--app-accent); color: var(--app-ink); box-shadow: 0 10px 30px -12px var(--app-accent); }
+.btn--app:hover { box-shadow: 0 16px 40px -12px var(--app-accent); }
+
+/* Header dropdown under "Apps" (hover or keyboard focus; no JS) */
+.nav-links .has-sub { position: relative; }
+.nav-links .sub {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 210px;
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  border-radius: 18px;
+  background: rgba(12, 12, 12, .96);
+  border: 1px solid var(--line);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity .2s, transform .2s var(--ease), visibility .2s;
+}
+.nav-links .sub::before { content: ""; position: absolute; left: 0; right: 0; top: -12px; height: 12px; } /* hover bridge */
+.nav-links .has-sub:hover .sub,
+.nav-links .has-sub:focus-within .sub { opacity: 1; visibility: visible; transform: none; }
+.nav-links .sub a { display: block; padding: 10px 14px; border-radius: 12px; }
+.nav-links .sub a[aria-current] { background: rgba(232, 80, 2, .16); color: #fff; font-weight: 600; }
+
+/* Breadcrumb */
+.crumbs ol { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 30px; padding: 0; list-style: none; font-size: .88rem; color: var(--muted); }
+.crumbs li + li::before { content: "›"; margin-right: 8px; color: var(--gray); }
+.crumbs a:hover { color: #fff; }
+.crumbs [aria-current] { color: #fff; }
+
+/* Hub cards: two buttons */
+.app-card .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 18px; }
+.app-card[data-app]::after { background: radial-gradient(120% 70% at 100% 0%, color-mix(in srgb, var(--app-accent) 30%, transparent), transparent 60%); }
+.app-card .chip { width: fit-content; }
+
+/* App page hero */
+.app-hero { position: relative; overflow: hidden; isolation: isolate; padding: calc(var(--nav-h) + 56px) 0 80px; }
+.app-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(55vw 45vw at 88% 35%, color-mix(in srgb, var(--app-accent) 30%, transparent), transparent 70%),
+    linear-gradient(180deg, color-mix(in srgb, var(--app-deep) 60%, transparent), transparent 75%);
+}
+/* faint parchment grain */
+.app-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .07;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .76 0 0 0 0 .67 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* faint Arabic calligraphy behind the hero (a single word, never a verse) */
+.calli {
+  position: absolute;
+  z-index: -1;
+  right: -3vw;
+  bottom: -4vw;
+  font-family: var(--font-quran);
+  font-size: clamp(7rem, 24vw, 20rem);
+  line-height: 1;
+  color: var(--app-accent);
+  opacity: .07;
+  pointer-events: none;
+  user-select: none;
+}
+.app-hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 48px; align-items: center; }
+.app-hero-copy { display: grid; gap: 20px; min-width: 0; }
+.app-hero h1 { font-size: clamp(2.5rem, 7vw, 5rem); letter-spacing: -.035em; }
+.app-hero h1 .tick { color: var(--app-accent); }
+.app-hero .lead { font-size: 1.15rem; color: #C9C9C9; max-width: 540px; }
+.app-mark {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 20px;
+  background: linear-gradient(160deg, var(--app-accent), var(--app-deep));
+  border: 1px solid rgba(255, 255, 255, .18);
+}
+.app-mark img { width: 38px; height: 38px; }
+.app-mark--full { background: none; padding: 0; overflow: hidden; border-color: color-mix(in srgb, var(--app-accent) 60%, transparent); }
+.app-mark--full img { width: 100%; height: 100%; }
+
+/* [HERO_ASSET] slot: shows the app mark until an image/video is dropped in */
+.app-hero-media {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid color-mix(in srgb, var(--app-accent) 35%, transparent);
+  background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--app-accent) 28%, transparent), transparent 62%), var(--app-ink);
+  box-shadow: 0 40px 90px -40px color-mix(in srgb, var(--app-accent) 70%, transparent);
+}
+.app-hero-media .mark { width: 26%; filter: drop-shadow(0 10px 30px rgba(0, 0, 0, .5)); }
+.app-hero-media .wave { position: absolute; left: 8%; right: 8%; bottom: 14%; height: 18%; color: var(--app-accent); opacity: .55; }
+.app-hero-media > img.cover, .app-hero-media > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* Problem statement */
+.reflect { max-width: 780px; display: grid; gap: 18px; }
+.reflect p { font-size: clamp(1.1rem, 2.2vw, 1.35rem); line-height: 1.7; color: #D2D2D2; }
+
+/* Who it's for */
+.who { display: grid; gap: 10px; align-content: start; padding: 26px; }
+.who svg { width: 30px; height: 30px; color: var(--orange-2); }
+.who h3 { font-size: 1.15rem; }
+.who p { color: var(--muted); font-size: .93rem; }
+
+/* Demo players */
+.demo-card { display: grid; gap: 14px; align-content: start; padding: 26px; }
+.demo-card h3 { font-size: 1.15rem; }
+.demo-card p { color: var(--muted); font-size: .93rem; }
+.demo-card audio { width: 100%; }
+.demo-card--after { border-color: color-mix(in srgb, var(--orange) 45%, transparent); }
+.demo-video { width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius-sm); background: #000; }
+.media-note { display: none; font-size: .85rem; color: var(--sand); }
+.is-missing .media-note { display: block; }
+
+/* FAQ (native <details>, works without JS) */
+.faq { display: grid; gap: 12px; max-width: 840px; }
+.faq details { padding: 18px 22px; }
+.faq summary { display: flex; align-items: center; gap: 12px; cursor: pointer; font-weight: 600; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; margin-left: auto; font-size: 1.3rem; color: var(--orange-2); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { margin-top: 12px; color: #BDBDBD; }
+
 /* ---------- 12. Responsive ---------- */
 @media (max-width: 1080px) {
   .grid--4 { grid-template-columns: repeat(2, 1fr); }
@@ -693,6 +840,11 @@ button { font: inherit; color: inherit; cursor: pointer; }
     border: 1px solid var(--line);
   }
   .site-header.menu-open .nav-links a { padding: 14px 16px; font-size: 1rem; }
+  /* the Apps dropdown becomes indented sub-links in the phone menu */
+  .site-header.menu-open .nav-links .sub { position: static; opacity: 1; visibility: visible; transform: none; min-width: 0; padding: 0 0 0 30px; background: none; border: 0; }
+  .site-header.menu-open .nav-links .sub a { padding: 10px 16px; font-size: .95rem; color: #BDBDBD; }
+  .app-hero-grid { grid-template-columns: 1fr; gap: 36px; }
+  .app-hero { padding-top: calc(var(--nav-h) + 40px); }
   .grid--3, .grid--2, .story, .cta, .bit-card, .footer-grid { grid-template-columns: 1fr; }
   .levels { grid-template-columns: 1fr; }
   .level + .level { border-left: 0; border-top: 1px solid var(--line); }
@@ -724,7 +876,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
     -webkit-backdrop-filter: blur(18px);
   }
   .tabbar a { display: grid; justify-items: center; gap: 4px; padding: 6px 12px; border-radius: 16px; font-size: .72rem; color: #BDBDBD; }
-  .tabbar a[aria-current="page"] { color: var(--orange-2); background: rgba(232, 80, 2, .12); }
+  .tabbar a[aria-current] { color: var(--orange-2); background: rgba(232, 80, 2, .12); }
   .tabbar svg { width: 22px; height: 22px; }
 }
 @media (max-width: 560px) {
@@ -739,4 +891,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .hero h1 { font-size: clamp(2.4rem, 11.8vw, 3.4rem); }
   .page-hero h1 { font-size: clamp(2.4rem, 12vw, 3rem); }
   .track { min-height: 170px; }
+  .app-hero .btn, .app-card .actions .btn { flex: 1 1 auto; }
+}
+@media (max-width: 380px) {
+  .brand { gap: 10px; }
+  .brand-name { padding-left: 10px; font-size: .72rem; letter-spacing: .1em; }
+  .wrap { width: calc(100% - 28px); }
 }

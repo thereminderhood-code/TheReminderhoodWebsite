@@ -14,7 +14,7 @@
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
-  const icon = (id) => `<svg aria-hidden="true"><use href="assets/icons.svg#${id}"/></svg>`;
+  const icon = (id) => `<svg aria-hidden="true"><use href="/assets/icons.svg#${id}"/></svg>`;
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   /* ---------- Header: compact on scroll + mobile menu ---------- */
@@ -34,7 +34,9 @@
     };
     btn.addEventListener("click", () => setOpen(!header.classList.contains("menu-open")));
     document.addEventListener("keydown", (e) => e.key === "Escape" && setOpen(false));
-    document.addEventListener("click", (e) => { if (!header.contains(e.target)) setOpen(false); });
+    // composedPath, not e.target: the button swaps its own icon on click, so the clicked
+    // <svg> is already detached by the time this runs and contains() would say "outside"
+    document.addEventListener("click", (e) => { if (!e.composedPath().includes(header)) setOpen(false); });
   }
 
   /* ---------- Social links: show only the ones that are set ---------- */
@@ -132,6 +134,21 @@
     if (tracks[fromHash]) $("#library")?.scrollIntoView();
   }
 
+  /* ---------- Demo media: say "coming soon" while a sample file is missing ---------- */
+  // App pages point <audio>/<video> at placeholder paths; until the real files exist
+  // the player can't load, so show the note instead of a silent, broken player.
+  function initMediaFallback() {
+    $$("[data-media]").forEach((box) => {
+      const media = $("audio, video", box);
+      if (!media) return;
+      const missing = () => box.classList.add("is-missing");
+      // the error may already have fired before this script ran (scripts are deferred)
+      if (media.networkState === HTMLMediaElement.NETWORK_NO_SOURCE || media.error) missing();
+      media.addEventListener("error", missing);
+      $$("source", media).forEach((src) => src.addEventListener("error", missing));
+    });
+  }
+
   /* ---------- Footer year ---------- */
   function initYear() {
     $$("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
@@ -143,6 +160,7 @@
     initBitOfDay();
     initLibrary();   // before reveal, so the new cards animate in too
     initReveal();
+    initMediaFallback();
     initYear();
   });
 })();
