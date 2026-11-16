@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Our Apps · The ReminderHood</title>
+  <meta name="description" content="Cave Ash'ari and AjrHunter: thoughtfully designed tools from The ReminderHood to help you learn, reflect and grow.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="The ReminderHood">
+  <meta property="og:description" content="Islamic learning, made simple. Small bits. Lasting impact.">
+  <meta property="og:image" content="assets/icon-512.png">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Poppins:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ===== Header (same on every page; set aria-current on the active link) ===== -->
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="nav glass" aria-label="Main">
+        <a class="brand" href="./" aria-label="The ReminderHood home">
+          <img src="assets/logo.png" alt="" width="40" height="38">
+          <span class="brand-name">The ReminderHood</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="./"><svg aria-hidden="true"><use href="assets/icons.svg#i-home"/></svg>Home</a></li>
+          <li><a href="apps" aria-current="page"><svg aria-hidden="true"><use href="assets/icons.svg#i-grid"/></svg>Apps</a></li>
+          <li><a href="learn"><svg aria-hidden="true"><use href="assets/icons.svg#i-book"/></svg>Learn</a></li>
+          <li><a href="about"><svg aria-hidden="true"><use href="assets/icons.svg#i-info"/></svg>About</a></li>
+        </ul>
+        <button class="menu-btn" type="button" aria-expanded="false"><svg aria-hidden="true"><use href="assets/icons.svg#i-menu"/></svg><span class="sr-only">Open menu</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== Page hero ===== -->
+    <section class="page-hero">
+      <div class="apps-visual" aria-hidden="true">
+        <div class="phone"><img src="assets/logo.png" alt=""></div>
+        <span class="float-tile float-tile--book"><svg><use href="assets/icons.svg#i-book"/></svg></span>
+        <span class="float-tile float-tile--play"><svg><use href="assets/icons.svg#i-play"/></svg></span>
+      </div>
+      <div class="wrap">
+        <div class="bar"></div>
+        <h1>Our <span class="accent">Apps</span></h1>
+        <p>Thoughtfully designed tools to help you learn, reflect and grow.</p>
+      </div>
+    </section>
+
+    <!-- ===== App grid ===== -->
+    <section class="section section--tight">
+      <div class="wrap">
+        <div class="grid grid--4">
+          <article class="app-card glass reveal">
+            <div class="app-icon"><img src="assets/icons/cave-ashari.svg" alt=""></div>
+            <h3>Cave Ash'ari</h3>
+            <p class="motto">Immerse. Reflect. Repeat.</p>
+            <p class="desc">A recitation studio: record or upload, trim, then give your tilawah a serene, cathedral-wide sound and download it.</p>
+            <div class="foot"><span class="chip"><svg aria-hidden="true"><use href="assets/icons.svg#i-headphones"/></svg>Audio</span><a class="round-link" href="https://cave-ashari.vercel.app" target="_blank" rel="noopener" aria-label="Open Cave Ash'ari"><svg aria-hidden="true"><use href="assets/icons.svg#i-arrow"/></svg></a></div>
+          </article>
+          <article class="app-card glass reveal">
+            <div class="app-icon app-icon--ajr"><img src="assets/icons/ajrhunter.svg" alt=""></div>
+            <h3>AjrHunter</h3>
+            <p class="motto">Recite. Sync. Share.</p>
+            <p class="desc">Turn a Qur'an recitation into a verse-synced video with Uthmani Arabic, translation and backgrounds, ready to post.</p>
+            <div class="foot"><span class="chip"><svg aria-hidden="true"><use href="assets/icons.svg#i-film"/></svg>Video</span><a class="round-link" href="https://ajrhunter.vercel.app" target="_blank" rel="noopener" aria-label="Open AjrHunter"><svg aria-hidden="true"><use href="assets/icons.svg#i-arrow"/></svg></a></div>
+          </article>
+          <article class="app-card app-card--soon glass reveal">
+            <span class="soon-pill"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-clock"/></svg>Coming Soon</span>
+            <p class="desc">Something special is on its way.</p>
+            <div class="foot"><span class="round-link round-link--muted" aria-hidden="true"><svg><use href="assets/icons.svg#i-arrow"/></svg></span></div>
+          </article>
+          <article class="app-card app-card--soon glass reveal" style="--blob: linear-gradient(135deg, #E85002, #b13cff)">
+            <span class="soon-pill"><svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-clock"/></svg>Coming Soon</span>
+            <p class="desc">Something special is on its way.</p>
+            <div class="foot"><span class="round-link round-link--muted" aria-hidden="true"><svg><use href="assets/icons.svg#i-arrow"/></svg></span></div>
+          </article>
+        </div>
+
+        <div class="banner glass reveal" style="margin-top:28px">
+          <div class="left">
+            <img src="assets/logo.png" alt="">
+            <div>
+              <h3>More useful tools, coming soon</h3>
+              <p>We're working on more ways to support your learning journey.</p>
+            </div>
+          </div>
+          <a class="btn btn--primary btn--sm" href="#follow">Stay Updated<svg class="ico" aria-hidden="true"><use href="assets/icons.svg#i-arrow"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Why we build ===== -->
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head section-head--center reveal">
+          <p class="eyebrow">How we build</p>
+          <h2>Simple tools, <span class="accent">sacred</span> purpose</h2>
+        </div>
+        <div class="grid grid--3 steps">
+          <div class="step glass reveal"><span class="num">1</span><h3>Calm by design</h3><p>No clutter and no noise. Each app does one job well, so your attention stays on the Qur'an.</p></div>
+          <div class="step glass reveal"><span class="num">2</span><h3>Private first</h3><p>Your recordings are processed in your own browser. Nothing is uploaded unless you choose to save it.</p></div>
+          <div class="step glass reveal"><span class="num">3</span><h3>Built to share khayr</h3><p>Made so reciters and students can carry a reminder further, one recitation at a time.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  </main>
+
+  <!-- ===== Footer (same on every page) ===== -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="brand" href="./"><img src="assets/logo.png" alt="" width="40" height="38"><span class="brand-name">The ReminderHood</span></a>
+          <p>Teaching Muslims their deen in small, digestible bits. Small bits. Lasting impact.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="learn">Deen in Bits</a></li>
+            <li><a href="apps">Our Apps</a></li>
+            <li><a href="about">About &amp; Values</a></li>
+          </ul>
+        </div>
+        <div id="follow" data-social-block>
+          <h4>Follow</h4>
+          <div class="socials">
+            <a data-social="youtube" href="#" aria-label="YouTube"><svg aria-hidden="true"><use href="assets/icons.svg#i-youtube"/></svg></a>
+            <a data-social="instagram" href="#" aria-label="Instagram"><svg aria-hidden="true"><use href="assets/icons.svg#i-instagram"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> The ReminderHood</span>
+        <span>Learn · Reflect · Apply</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Phone tab bar ===== -->
+  <nav class="tabbar" aria-label="Quick">
+    <a href="./"><svg aria-hidden="true"><use href="assets/icons.svg#i-home"/></svg>Home</a>
+    <a href="apps" aria-current="page"><svg aria-hidden="true"><use href="assets/icons.svg#i-grid"/></svg>Apps</a>
+    <a href="learn"><svg aria-hidden="true"><use href="assets/icons.svg#i-book"/></svg>Learn</a>
+    <a href="about"><svg aria-hidden="true"><use href="assets/icons.svg#i-info"/></svg>About</a>
+  </nav>
+
+  <script src="js/bits.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
