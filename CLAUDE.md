@@ -47,7 +47,7 @@ digestible bits ("Deen in Bits"). Pages: Home → Apps hub (`/apps`) with one pa
 | `sitemap.xml`, `robots.txt` | All six URLs on `https://thereminderhood.com`; add new pages to the sitemap |
 | `assets/og/` | Share images: `og-default`, `og-apps`, `og-cave-ashari`, `og-ajrhunter` (.jpg) |
 | `assets/apps/<app>/` | (not created yet) hero image/video and demo media; see README "Placeholders" |
-| `learn.html` | Deen in Bits, kept deliberately minimal (the owner's learning-science call): intro → one animation (`/assets/learn/deen-in-bits.gif`, `[LEARN_GIF]`) → "Hear the reminder" CTA. The method, levels and bit library were removed on purpose; `bits.js` now only feeds the home page's "A bit for today" |
+| `learn.html` | Deen in Bits, kept deliberately minimal (the owner's learning-science call): intro → the owner's "Coming soon" GIF (`/assets/learn/deen-in-bits.gif`, 1920×1080, until the curriculum is done) → "Hear the reminder" CTA. The method, levels and bit library were removed on purpose; `bits.js` now only feeds the home page's "A bit for today" |
 | `about.html` | Story, "What we make", IMAMAE core values (text exactly as in the owner's values graphic), CTA |
 | `css/styles.css` | Every style: tokens, base, layout, header, buttons, hero, cards, page-specific, footer, tab bar, motion, responsive |
 | `js/bits.js` | Deen in Bits content (data only) |
