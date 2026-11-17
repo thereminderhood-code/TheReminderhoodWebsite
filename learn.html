@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -21,6 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Poppins:wght@400;500;600;700;800&display=swap">
+  <script src="/js/theme.js"></script>
   <link rel="stylesheet" href="/css/styles.css">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://thereminderhood.com/"}, {"@type": "ListItem", "position": 2, "name": "Deen in Bits", "item": "https://thereminderhood.com/learn"}]}</script>
 </head>
@@ -32,7 +33,7 @@
     <div class="wrap">
       <nav class="nav glass" aria-label="Main">
         <a class="brand" href="/" aria-label="The ReminderHood home">
-          <img src="/assets/logo.png" alt="" width="40" height="38">
+          <img class="logo-on-dark" src="/assets/logo.png" alt="" width="40" height="38"><img class="logo-on-light" src="/assets/logo-light.png" alt="" width="40" height="38">
           <span class="brand-name">The ReminderHood</span>
         </a>
         <ul class="nav-links">
@@ -46,7 +47,10 @@
           <li><a href="/learn" aria-current="page"><svg aria-hidden="true"><use href="/assets/icons.svg#i-book"/></svg>Learn</a></li>
           <li><a href="/about"><svg aria-hidden="true"><use href="/assets/icons.svg#i-info"/></svg>About</a></li>
         </ul>
-        <button class="menu-btn" type="button" aria-expanded="false"><svg aria-hidden="true"><use href="/assets/icons.svg#i-menu"/></svg><span class="sr-only">Open menu</span></button>
+        <div class="nav-tools">
+          <button class="theme-btn" type="button" aria-label="Switch to light mode" aria-pressed="false"><svg class="i-sun" aria-hidden="true"><use href="/assets/icons.svg#i-sun"/></svg><svg class="i-moon" aria-hidden="true"><use href="/assets/icons.svg#i-moon"/></svg></button>
+          <button class="menu-btn" type="button" aria-expanded="false"><svg aria-hidden="true"><use href="/assets/icons.svg#i-menu"/></svg><span class="sr-only">Open menu</span></button>
+        </div>
       </nav>
     </div>
   </header>
@@ -94,7 +98,7 @@
     <div class="wrap">
       <div class="footer-grid">
         <div class="footer-about">
-          <a class="brand" href="/"><img src="/assets/logo.png" alt="" width="40" height="38"><span class="brand-name">The ReminderHood</span></a>
+          <a class="brand" href="/"><img class="logo-on-dark" src="/assets/logo.png" alt="" width="40" height="38"><img class="logo-on-light" src="/assets/logo-light.png" alt="" width="40" height="38"><span class="brand-name">The ReminderHood</span></a>
           <p>Teaching Muslims their deen in small, digestible bits. Small bits. Lasting impact.</p>
         </div>
         <div>

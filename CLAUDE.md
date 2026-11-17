@@ -36,7 +36,8 @@ digestible bits ("Deen in Bits"). Pages: Home → Apps hub (`/apps`) with one pa
 - Design language: black `#000000` base, Branding Orange `#E85002`, gradient `#000000 → #C10801 → #F16001 → #D9C3AB`,
   Vivid Azure `#0DBEDE` (the R's tail, used sparingly), white `#F9F9F9`, gray `#646464`, dark gray `#333333`.
   Frosted-glass panels, ember arc + glow from the right, azure hint on the left, pill nav with white active pill,
-  big tight Poppins headings, pill buttons, phone tab bar at the bottom (≤900 px). Single dark theme
+  big tight Poppins headings, pill buttons, phone tab bar at the bottom (≤900 px). **Dark is the default**; a light
+  "parchment" theme (`#F6F1EA`) is available from the sun/moon button in the header
 
 ## Project Structure
 | File | Role |
@@ -65,13 +66,19 @@ and set `aria-current="page"` on the current page's link in both the header and 
 top-level Apps link and tab get `aria-current="true"` (section) and the app's dropdown link gets `aria-current="page"`.
 The header "Apps" item has a CSS-only dropdown (`.has-sub` → `.sub`, opens on hover/focus); in the phone menu it shows as indented sub-links.
 
+## Light / dark theme
+- `<html data-theme="dark">` on every page; the header toggle (`.theme-btn`, `initTheme` in `main.js`) switches to `light` and saves `rh-theme` in localStorage. `js/theme.js` is the only non-deferred script: it restores the choice in `<head>` so there's no flash. The OS setting is deliberately ignored (the owner wants dark by default)
+- Colours go through tokens: `--bg`, `--text`, `--text-hi`, `--text-strong`, `--text-soft`, `--muted`, `--line`, `--glass`, `--glass-2`, `--pill-bg/-fg`, and `rgba(var(--fg-rgb), a)` / `rgba(var(--panel-rgb), a)` for tints and floating panels. Light values live in CSS section 14. Don't hard-code `#fff` text or white rgba tints in new rules; text on orange stays `#fff`
+- The logo's white "T" disappears on light backgrounds, so every logo is a pair: `.logo-on-dark` (`logo.png`) + `.logo-on-light` (`logo-light.png`, dark-ink T). The phone mock-up on the Apps hub is always dark and keeps only `logo.png`
+- Pieces drawn for a dark background on purpose stay dark in light mode: app hero "screens", app icons, the Coming Soon GIF, the dark track cards
+
 ## App accents
 Each app's colours are three variables set by `data-app` on `<body>` (app pages) or on a hub card:
 `--app-accent`, `--app-deep`, `--app-ink`. Cave Ash'ari = `#FF6D29` / `#453027` / `#161316`; AjrHunter = gold `#D4A64A` / `#4a3712` / `#14110b`.
 Only the hero (`.app-hero` glow, mark, `.calli` watermark, `h1 .tick`) and `.btn--app` read them; everything else keeps the main site's look.
 App-page copy must describe the apps as they really are: Cave Ash'ari's spaces are Subtle, Majestic, Cathedral, Hammam (+ Dry);
 AjrHunter syncs the surah + ayat the user chooses (it does not detect which verses were recited).
-The AjrHunter page credits **Ahmed Al-Gharib** (أحمد الغريب, https://am9li9.com/) for the Qur'anic fonts and asks visitors to remember him and AbuHammam in their du'a: keep this.
+The AjrHunter page credits **Ahmed Al-Gharib** (أحمد الغريب, https://am9li9.com/) for the Qur'anic fonts and asks visitors to remember him, AbuHammam Salih Ibn Yahaya, and the rest of The ReminderHood team members and contributors in their du'a (the owner's wording): keep this.
 
 ## Important Rules
 - Every Qur'an verse shows its surah name + ayah number; every hadith shows its collection + number (the owner's rule)
@@ -96,3 +103,4 @@ The AjrHunter page credits **Ahmed Al-Gharib** (أحمد الغريب, https://a
 - **The hero art hid the wordmark:** at 62vw the crescent sat on "Hood". Keep the art ≤50vw on desktop and faded (opacity .3) under the text on phones.
 - **Phone menu never opened:** the menu button swaps its own icon on click, so the clicked `<svg>` was detached before the document "click outside" handler ran, `header.contains(e.target)` was false, and the menu closed instantly. Use `e.composedPath().includes(header)`.
 - **Subfolder pages lost their CSS/icons:** relative paths (`css/styles.css`) resolve against `/apps/cave-ashari/`. All paths are root-absolute now; keep them that way.
+- **Sprite symbols silently missing:** `assets/icons.svg` has a `</svg>` inside its top comment, so inserting before the first `</svg>` put new symbols in the comment. Insert before the *last* `</svg>` and check with `grep -c`.

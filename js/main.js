@@ -39,6 +39,27 @@
     document.addEventListener("click", (e) => { if (!e.composedPath().includes(header)) setOpen(false); });
   }
 
+  /* ---------- Light / dark toggle (dark is the default) ---------- */
+  function initTheme() {
+    const root = document.documentElement;
+    const meta = $('meta[name="theme-color"]');
+    const sync = () => {
+      const light = root.dataset.theme === "light";
+      if (meta) meta.content = light ? "#F6F1EA" : "#000000";
+      $$(".theme-btn").forEach((btn) => {
+        btn.setAttribute("aria-label", light ? "Switch to dark mode" : "Switch to light mode");
+        btn.setAttribute("aria-pressed", String(light));
+      });
+    };
+    $$(".theme-btn").forEach((btn) => btn.addEventListener("click", () => {
+      const light = root.dataset.theme !== "light";
+      root.dataset.theme = light ? "light" : "dark";
+      try { localStorage.setItem("rh-theme", light ? "light" : "dark"); } catch (e) { /* not saved; still switches */ }
+      sync();
+    }));
+    sync();
+  }
+
   /* ---------- Social links: show only the ones that are set ---------- */
   function initSocial() {
     $$("[data-social]").forEach((a) => {
@@ -161,6 +182,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     initHeader();
+    initTheme();
     initSocial();
     initBitOfDay();
     initLibrary();   // before reveal, so the new cards animate in too
