@@ -71,6 +71,7 @@ Each app's colours are three variables set by `data-app` on `<body>` (app pages)
 Only the hero (`.app-hero` glow, mark, `.calli` watermark, `h1 .tick`) and `.btn--app` read them; everything else keeps the main site's look.
 App-page copy must describe the apps as they really are: Cave Ash'ari's spaces are Subtle, Majestic, Cathedral, Hammam (+ Dry);
 AjrHunter syncs the surah + ayat the user chooses (it does not detect which verses were recited).
+The AjrHunter page credits **Ahmed Al-Gharib** (أحمد الغريب, https://am9li9.com/) for the Qur'anic fonts and asks visitors to remember him and AbuHammam in their du'a: keep this.
 
 ## Important Rules
 - Every Qur'an verse shows its surah name + ayah number; every hadith shows its collection + number (the owner's rule)
@@ -80,6 +81,7 @@ AjrHunter syncs the surah + ayat the user chooses (it does not detect which vers
 - Social links live in `SOCIAL` in `main.js` (YouTube @TheReminderHood, Instagram @thereminderhoods); every "Follow us" / "Stay Updated" button points to `#follow` in the footer
 - Never put the owner's email or any secret in the code
 - Don't mix Cave Ash'ari or AjrHunter code into this repo; link to the live apps
+- No decorative short orange lines (the old eyebrow bar and `.bar` above page titles): the owner removed them as "mediocre"; don't add them back
 - Check every page at 1440 px, 390 px and 360 px before pushing (no horizontal scroll, nothing overlapping the hero text)
 - After a bug or detour that took real time to solve, add a short entry to **Lessons learned** below
 

@@ -95,7 +95,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
   font-size: .95rem;
   color: #CFCFCF;
 }
-.eyebrow::before { content: ""; width: 44px; height: 3px; border-radius: 3px; background: var(--orange); }
 .eyebrow .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--orange); }
 
 .section-head { display: grid; gap: 14px; max-width: 720px; margin-bottom: 48px; }
@@ -308,7 +307,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* Short hero for inner pages */
 .page-hero { padding: calc(var(--nav-h) + 90px) 0 40px; position: relative; overflow: hidden; }
 .page-hero h1 { font-size: clamp(3rem, 7.5vw, 5.6rem); letter-spacing: -.035em; }
-.page-hero .bar { width: 48px; height: 4px; border-radius: 4px; background: var(--orange); margin-bottom: 26px; }
 .page-hero p { margin-top: 18px; max-width: 560px; font-size: 1.15rem; color: #BDBDBD; }
 
 /* ---------- 7. Sections & cards ---------- */
@@ -806,6 +804,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .learn-gif img { width: 100%; height: auto; border-radius: var(--radius-sm); }
 .learn-gif.is-missing { display: grid; place-items: center; min-height: 260px; }
 .learn-gif.is-missing img { display: none; }
+
+/* Credits (AjrHunter fonts) */
+.credits { display: grid; gap: 16px; justify-items: start; max-width: 840px; padding: 34px; }
+.credits h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); }
+.credits p { color: #C9C9C9; font-size: 1.02rem; }
+.credits strong { color: #fff; }
+.credits .dua { margin-top: 6px; padding-top: 16px; border-top: 1px solid var(--line); width: 100%; color: #E4E4E4; font-style: italic; }
 
 /* FAQ (native <details>, works without JS) */
 .faq { display: grid; gap: 12px; max-width: 840px; }
