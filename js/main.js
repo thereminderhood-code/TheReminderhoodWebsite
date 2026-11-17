@@ -8,8 +8,8 @@
 
   /* ---------- Settings: fill these in to switch the links on ---------- */
   const SOCIAL = {
-    youtube: "",   // e.g. "https://www.youtube.com/@thereminderhood"
-    instagram: ""  // e.g. "https://www.instagram.com/thereminderhood"
+    youtube: "https://www.youtube.com/@TheReminderHood",
+    instagram: "https://www.instagram.com/thereminderhoods"
   };
 
   const $ = (sel, root = document) => root.querySelector(sel);

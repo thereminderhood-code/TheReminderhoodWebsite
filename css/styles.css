@@ -645,6 +645,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .socials a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--glass-2); }
 .socials a:hover { background: var(--orange); color: #fff; }
 .socials svg { width: 18px; height: 18px; }
+/* arriving from a "Follow us" button: briefly light up the links */
+#follow { scroll-margin-top: 120px; }
+#follow:target .socials a { animation: followPulse 1.6s var(--ease) 2; }
+@keyframes followPulse { 50% { background: var(--orange); color: #fff; box-shadow: 0 0 0 6px rgba(232, 80, 2, .25); } }
 
 /* ---------- 10. Mobile tab bar (phones only) ---------- */
 .tabbar { display: none; }

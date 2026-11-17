@@ -77,7 +77,7 @@ AjrHunter syncs the surah + ayat the user chooses (it does not detect which vers
 - Qur'an text: copy from AjrHunter's `quran.json` (KFGQPC Uthmani + Sahih International); never type Arabic by hand.
   The Hafs font has no U+06DD: for an ayah end inside a passage write a space + Arabic-Indic digits (`٥`), the font draws the medallion
 - The IMAMAE value texts on the About page are the owner's wording; don't edit them without asking
-- Social links are empty until the owner gives the handles: fill `SOCIAL` in `main.js`; empty ones hide themselves
+- Social links live in `SOCIAL` in `main.js` (YouTube @TheReminderHood, Instagram @thereminderhoods); every "Follow us" / "Stay Updated" button points to `#follow` in the footer
 - Never put the owner's email or any secret in the code
 - Don't mix Cave Ash'ari or AjrHunter code into this repo; link to the live apps
 - Check every page at 1440 px, 390 px and 360 px before pushing (no horizontal scroll, nothing overlapping the hero text)
