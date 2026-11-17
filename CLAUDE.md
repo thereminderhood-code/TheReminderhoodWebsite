@@ -67,7 +67,7 @@ top-level Apps link and tab get `aria-current="true"` (section) and the app's dr
 The header "Apps" item has a CSS-only dropdown (`.has-sub` → `.sub`, opens on hover/focus); in the phone menu it shows as indented sub-links.
 
 ## Light / dark theme
-- `<html data-theme="dark">` on every page; the header toggle (`.theme-btn`, `initTheme` in `main.js`) switches to `light` and saves `rh-theme` in localStorage. `js/theme.js` is the only non-deferred script: it restores the choice in `<head>` so there's no flash. The OS setting is deliberately ignored (the owner wants dark by default)
+- `<html data-theme="dark">` on every page; the toggle (`.theme-btn`, `initTheme` in `main.js`; a round button in the desktop nav bar, and on phones the first row of the menu, `.theme-row`) switches to `light` and saves `rh-theme` in localStorage. `js/theme.js` is the only non-deferred script: it restores the choice in `<head>` so there's no flash. The OS setting is deliberately ignored (the owner wants dark by default)
 - Colours go through tokens: `--bg`, `--text`, `--text-hi`, `--text-strong`, `--text-soft`, `--muted`, `--line`, `--glass`, `--glass-2`, `--pill-bg/-fg`, and `rgba(var(--fg-rgb), a)` / `rgba(var(--panel-rgb), a)` for tints and floating panels. Light values live in CSS section 14. Don't hard-code `#fff` text or white rgba tints in new rules; text on orange stays `#fff`
 - The logo's white "T" disappears on light backgrounds, so every logo is a pair: `.logo-on-dark` (`logo.png`) + `.logo-on-light` (`logo-light.png`, dark-ink T). The phone mock-up on the Apps hub is always dark and keeps only `logo.png`
 - Pieces drawn for a dark background on purpose stay dark in light mode: app hero "screens", app icons, the Coming Soon GIF, the dark track cards

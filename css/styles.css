@@ -861,7 +861,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
     right: 24px;
     padding: 12px;
     border-radius: var(--radius);
-    background: rgba(var(--panel-rgb), .96);
+    background: rgb(var(--panel-rgb));
+    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, .5);
     border: 1px solid var(--line);
   }
   .site-header.menu-open .nav-links a { padding: 14px 16px; font-size: 1rem; }
@@ -989,4 +990,26 @@ button { font: inherit; color: inherit; cursor: pointer; }
 [data-theme="light"] .theme-btn .i-sun { display: none; }
 [data-theme="light"] .theme-btn .i-moon { display: block; }
 .nav-tools { display: flex; align-items: center; gap: 8px; }
+
+/* Phone menu: the toggle is the first row of the menu instead of a header button */
+.theme-row { display: none; }
+.theme-btn--row .t-dark { display: none; }
+[data-theme="light"] .theme-btn--row .t-light { display: none; }
+[data-theme="light"] .theme-btn--row .t-dark { display: inline; }
+@media (max-width: 900px) {
+  .nav-tools .theme-btn { display: none; }
+  .site-header.menu-open .theme-row { display: block; padding-bottom: 8px; margin-bottom: 4px; border-bottom: 1px solid var(--line); }
+  .theme-btn--row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+    padding: 14px 16px;
+    border-radius: 999px;
+    justify-content: flex-start;
+    background: var(--glass-2);
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
 
