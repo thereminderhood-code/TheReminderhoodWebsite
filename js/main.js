@@ -14,7 +14,7 @@
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
-  const icon = (id) => `<svg aria-hidden="true"><use href="/assets/icons.svg#${id}"/></svg>`;
+  const icon = (id) => `<svg aria-hidden="true"><use href="/assets/icons.svg?v=20261117#${id}"/></svg>`;
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   /* ---------- Header: compact on scroll + mobile menu ---------- */

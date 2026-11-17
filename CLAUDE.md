@@ -16,7 +16,8 @@ digestible bits ("Deen in Bits"). Pages: Home → Apps hub (`/apps`) with one pa
 - Language: plain JavaScript (ES2020+, one IIFE in `main.js`), HTML, CSS (design tokens in `:root` of `styles.css`)
 - Fonts: Google Fonts Poppins (UI/headings) + Cinzel (the "THE REMINDERHOOD" wordmark); `assets/fonts/hafs.woff2`
   (KFGQPC Uthmanic Script Hafs, converted from AjrHunter's `hafs.otf`) for Qur'an text
-- Icons: one SVG sprite, `assets/icons.svg`, used as `<svg><use href="/assets/icons.svg#i-name"/></svg>`
+- Icons: one SVG sprite, `assets/icons.svg`, used as `<svg><use href="/assets/icons.svg?v=YYYYMMDD#i-name"/></svg>`.
+  **When you add or change a symbol, bump the `?v=` date everywhere** (all `.html` + `icon()` in `main.js`): browsers cache `/assets/` and keep the old sprite otherwise
 - Paths are **root-absolute everywhere** (`/css/…`, `/assets/…`, `/learn`, `/apps/ajrhunter`) because pages live at different folder depths
 - Hosting: Vercel (`vercel.json`: `cleanUrls`, so `apps/cave-ashari/index.html` is served at `/apps/cave-ashari`; cache headers for assets and fonts)
 - SEO: every `<head>` has title, description, canonical, Open Graph + Twitter card (images in `assets/og/`, 1200×630); inner pages carry BreadcrumbList JSON-LD. `sitemap.xml` + `robots.txt` at the root. Absolute URLs use `https://thereminderhood.com`
@@ -104,3 +105,4 @@ The AjrHunter page credits **Ahmed Al-Gharib** (أحمد الغريب, https://a
 - **Phone menu never opened:** the menu button swaps its own icon on click, so the clicked `<svg>` was detached before the document "click outside" handler ran, `header.contains(e.target)` was false, and the menu closed instantly. Use `e.composedPath().includes(header)`.
 - **Subfolder pages lost their CSS/icons:** relative paths (`css/styles.css`) resolve against `/apps/cave-ashari/`. All paths are root-absolute now; keep them that way.
 - **Sprite symbols silently missing:** `assets/icons.svg` has a `</svg>` inside its top comment, so inserting before the first `</svg>` put new symbols in the comment. Insert before the *last* `</svg>` and check with `grep -c`.
+- **New icons invisible for visitors after deploy:** `/assets/` was cached 7 days, so returning browsers kept the old `icons.svg` and the new sun/moon toggle showed as an empty circle. The sprite URL now carries `?v=` (bump it on every sprite change) and `/assets/` is cached 1 day with must-revalidate.
